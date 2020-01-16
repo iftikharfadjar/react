@@ -1,6 +1,11 @@
 import React from 'react';
 import Navbar from './components/layout/Navbar'
+import UserItem from './components/users/UserItem'
 import './App.css';
+import {
+  IonApp,
+} from '@ionic/react';
+
 
 //=================================
 //Class Component
@@ -11,13 +16,16 @@ class App extends React.Component {
     const numbers = 1
     
     return (
-       <div>
+      <IonApp>
+      
           {/*
             example use numbers for to test proptypes string
             <Navbar title={numbers} icon="icon ion-logo-github" />
           */}
           <Navbar title="Github Finder" icon="icon ion-logo-github" />
-        </div>
+          <UserItem />
+       
+      </IonApp>
     );
   }
 }

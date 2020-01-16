@@ -5,18 +5,11 @@ import '@ionic/core/css/core.css';
 import '@ionic/core/css/ionic.bundle.css';
 
 import {
-  IonApp,
-  IonContent,
+
   IonHeader,
   IonTitle,
-  IonToolbar,
-  IonCard,
-  IonCardContent,
-  IonCardHeader,
-  IonCardSubtitle,
-  IonCardTitle,
-  IonButtons,
-  IonBackButton
+  IonToolbar
+
 } from '@ionic/react';
 
 export class Navbar extends Component {
@@ -33,16 +26,13 @@ export class Navbar extends Component {
   }
   render(){
     return (
-     <>
-    <IonHeader>
-      <IonToolbar>
-
-        <IonTitle>  <i className={this.props.icon}></i> {this.props.title}</IonTitle>
-      </IonToolbar>
-    </IonHeader>
-
-   
-  </>
+      <>
+      <IonHeader>
+        <IonToolbar color="dark">
+          <IonTitle>  <i className={this.props.icon}></i> {this.props.title}</IonTitle>
+        </IonToolbar>
+      </IonHeader>
+      </>
     )
   }
 }
