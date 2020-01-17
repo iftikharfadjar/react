@@ -4,25 +4,11 @@ import '@ionic/core/css/core.css';
 import '@ionic/core/css/ionic.bundle.css';
 
 import {
-  IonApp,
-  IonContent,
-  IonHeader,
-  IonTitle,
-  IonToolbar,
   IonCard,
-  IonCardContent,
-  IonCardHeader,
-  IonCardSubtitle,
-  IonCardTitle,
-  IonButtons,
   IonButton,
-  IonSearchbar,
-  IonBackButton,
   IonItem,
-  IonRow,
-  IonGrid,
-  IonCol,
-  IonImg
+  IonAvatar,
+  IonLabel
 } from '@ionic/react';
 
 export class UserItem extends Component {
@@ -38,26 +24,21 @@ export class UserItem extends Component {
   
   render(){
     //for re-variable of this.state
-    const {login, avatar_url, html_url} = this.state;
+    const {login, avatar_url, html_url} = this.props.user;
     
     return (
     <>
-       <IonContent>
-         <IonCard className="ion-text-center">
-            <div className="ion-text-center">
-                <img src={avatar_url} style={{width: 'auto'}}/>
-            </div>
-            <IonCardHeader>
-            {/*<IonCardSubtitle>Card Subtitle</IonCardSubtitle>*/}
-              <IonCardTitle>{login}</IonCardTitle>
-            </IonCardHeader>
-
-            <IonItem href={html_url}>
-              <IonButton color="dark">more..</IonButton>
-            </IonItem>
-
-         </IonCard>
-     </IonContent>
+      <IonCard >
+        <IonItem>
+            <IonAvatar slot='start'>
+                <img src={avatar_url} alt="avatar" style={{borderRadius:'50%'}} />
+            </IonAvatar >
+            <IonLabel>
+              <h1>{login}</h1>
+              <IonButton  href={html_url} color="dark">more..</IonButton>
+            </IonLabel>
+          </IonItem>
+      </IonCard>
     </>
    );
   }
