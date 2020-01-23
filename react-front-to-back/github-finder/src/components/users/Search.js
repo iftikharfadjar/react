@@ -32,31 +32,38 @@ class Search extends Component {
     this.setState({ text: ''})
   }
   
+  
   render(){
+    const {showClear,clearUsers } = this.props;
     return (
     <>
       <form onSubmit={this.onSubmit}>
-      <IonGrid>
         <IonRow>
-          <IonCol size="3">
+          <IonCol>
             <IonItem>
-              <IonLabel position="floating">Name</IonLabel>
+              <IonLabel position="floating">Search User</IonLabel>
               <IonInput 
                   name="text"
                   onIonChange={this.onChange} 
                   value={this.state.text} 
-                  placeholder="username login"></IonInput>
+                  ></IonInput>
             </IonItem>
           </IonCol>
-          <IonCol size="1">
-              <div>
+        </IonRow>
+        <IonRow>
+            <IonCol>
                 <IonButton type="submit" expand="block" color="dark">Search</IonButton>
-              </div>
-          </IonCol>
-        <IonCol size="8"></IonCol>
+           </IonCol>
        </IonRow>
-      </IonGrid>
      </form>
+    {showClear && (
+      <IonRow>          
+            <IonCol>
+                <IonButton expand="block" color="light" onClick={clearUsers}>Clear</IonButton>
+           </IonCol>
+       </IonRow>
+    )}
+    
     </>
    );
   }

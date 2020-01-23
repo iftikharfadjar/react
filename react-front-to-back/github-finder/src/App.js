@@ -28,9 +28,18 @@ class App extends React.Component {
   //searcch Github users
   searchUsers = async (text) => {
     this.setState({loading : true})
-    const res = await axios.get(`https://api.github.com/search/users?q=${text}`)
-    this.setState({ users: res.data.items, loading: false });
-    
+    if(text !== ""){
+      const res = await axios.get(`https://api.github.com/search/users?q=${text}`)
+      this.setState({ users: res.data.items, loading: false });
+    }else{
+      const res = await axios.get('https://api.github.com/users')  
+       this.setState({ users: res.data, loading: false });
+    }
+   
+  }
+  
+  clearUsers = () => {
+    this.setState({ users: [], loading: false });
   }
   
   render() {
@@ -47,7 +56,11 @@ class App extends React.Component {
             <Navbar title={numbers} icon="icon ion-logo-github" />
           */}
           <Navbar title="Github Finder" icon="icon ion-logo-github" />
-          <Search searchUsers={this.searchUsers}/>
+          <Search 
+            searchUsers={this.searchUsers} 
+            clearUsers={this.clearUsers}
+            showClear={users.length > 0 ? true : false}  
+          />
           <Users loading={loading} users={users}/>
        
       </IonApp>
