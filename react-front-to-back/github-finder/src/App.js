@@ -1,6 +1,7 @@
 import React from 'react';
 import Navbar from './components/layout/Navbar'
 import Users from './components/users/Users'
+import Search from './components/users/Search'
 import axios from 'axios'
 import './App.css';
 import {
@@ -18,13 +19,19 @@ class App extends React.Component {
   }
   
   //Lifecycle method
-  async componentDidMount(){
-    this.setState({loading: true})
-    const res = await axios.get('https://api.github.com/users')
-    this.setState({ users: res.data, loading: false });
-    console.log(res.data)
-  }
+//   async componentDidMount(){
+//     this.setState({loading: true})
+//     const res = await axios.get('https://api.github.com/users')
+//     this.setState({ users: res.data, loading: false });
+//   }
   
+  //searcch Github users
+  searchUsers = async (text) => {
+    this.setState({loading : true})
+    const res = await axios.get(`https://api.github.com/search/users?q=${text}`)
+    this.setState({ users: res.data.items, loading: false });
+    
+  }
   
   render() {
    {/* 
@@ -40,6 +47,7 @@ class App extends React.Component {
             <Navbar title={numbers} icon="icon ion-logo-github" />
           */}
           <Navbar title="Github Finder" icon="icon ion-logo-github" />
+          <Search searchUsers={this.searchUsers}/>
           <Users loading={loading} users={users}/>
        
       </IonApp>

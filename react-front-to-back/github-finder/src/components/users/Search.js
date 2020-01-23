@@ -7,10 +7,10 @@ import {
   IonItem,
   IonLabel,
   IonInput,
-  IonList,
   IonCol,
   IonGrid,
   IonRow
+
 } from '@ionic/react';
 
 
@@ -18,25 +18,45 @@ import {
 //          CLASS COMPONENT
 //=================================================================
 class Search extends Component {
+    state = {
+      text : ''
+    };
+
+  onChange = (e) => {
+    this.setState({ [e.target.name]: e.target.value })
+  }
+  
+  onSubmit = (e) => {
+    e.preventDefault();
+    this.props.searchUsers(this.state.text)
+    this.setState({ text: ''})
+  }
+  
   render(){
     return (
     <>
-      <IonGrid Fixed>
+      <form onSubmit={this.onSubmit}>
+      <IonGrid>
         <IonRow>
           <IonCol size="3">
             <IonItem>
               <IonLabel position="floating">Name</IonLabel>
-              <IonInput></IonInput>
+              <IonInput 
+                  name="text"
+                  onIonChange={this.onChange} 
+                  value={this.state.text} 
+                  placeholder="username login"></IonInput>
             </IonItem>
           </IonCol>
           <IonCol size="1">
               <div>
-                <IonButton expand="block" color="dark">Search</IonButton>
+                <IonButton type="submit" expand="block" color="dark">Search</IonButton>
               </div>
           </IonCol>
         <IonCol size="8"></IonCol>
        </IonRow>
       </IonGrid>
+     </form>
     </>
    );
   }

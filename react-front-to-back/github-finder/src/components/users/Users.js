@@ -1,9 +1,9 @@
-import React, { Component } from 'react';
+import React from 'react';
 // import 'bootstrap/dist/css/bootstrap.css';
 import '@ionic/core/css/core.css';
 import '@ionic/core/css/ionic.bundle.css';
 import UserItem from './UserItem'
-import Search from './Search'
+
 
 import {
   IonContent,
@@ -36,7 +36,6 @@ const Users = ({loading, users}) => {
       return (
       <>
          <IonContent>
-           <Search/>
           <IonGrid Fixed>
             <IonRow>
                 {users.map(user => (
