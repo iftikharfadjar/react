@@ -6,13 +6,10 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import '@ionic/core/css/core.css';
 import '@ionic/core/css/ionic.bundle.css';
+import { Link } from 'react-router-dom';
 
 import {
-
-  IonHeader,
-  IonTitle,
-  IonToolbar
-
+   IonHeader, IonContent, IonToolbar, IonButtons, IonButton,IonBackButton, IonTitle, IonList
 } from '@ionic/react';
 
 //=================================================================
@@ -30,8 +27,22 @@ const Navbar = ({ icon , title}) => {
           {/*common way
           //<IonTitle>  <i className={props.icon}></i> {props.title}</IonTitle>
           */}
+          <IonButtons slot="start">
+            <IonBackButton defaultHref="/" />
+          </IonButtons>
           <IonTitle>  <i className={icon}></i> {title}</IonTitle>
+          
+          <IonButton href='/' color="dark" slot="end">
+            Home
+          </IonButton>
+
+          <IonButton href='/about' color="dark" slot="end">
+            About
+          </IonButton>
+          
         </IonToolbar>
+      
+      
       </IonHeader>
       </>
     )
